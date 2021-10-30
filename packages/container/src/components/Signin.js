@@ -2,8 +2,8 @@ import React from "react";
 import { useContext } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import AuthContext from "./AuthContext";
-import useForm from "./useForm";
+import AuthContext from "../hooks/AuthContext";
+import useForm from "../hooks/useForm";
 
 const Signin = () => {
   const authContext = useContext(AuthContext);

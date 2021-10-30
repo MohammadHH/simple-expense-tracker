@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { addUser } from "./api";
-import useForm from "./useForm";
+import { addUser } from "../api/api";
+import useForm from "../hooks/useForm";
 
 const Signup = () => {
   const history = useHistory();

@@ -1,10 +1,8 @@
 const { merge } = require("webpack-merge");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
-
-const domain = process.env.PRODUCTION_DOMAIN;
-const publicPath = process.env.PRODUCTION_CONTAINER_PUBLIC_PATH;
+const commonConfig = require("./webpack.common");
+const publicPath = process.env.PRODUCTION_DEPOSITS_PUBLIC_PATH;
 
 const prodConfig = {
   mode: "production",
@@ -14,7 +12,11 @@ const prodConfig = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "container",
+      name: "expenses",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./ExpensesApp": "./src/bootstrap",
+      },
       shared: packageJson.dependencies,
     }),
   ],

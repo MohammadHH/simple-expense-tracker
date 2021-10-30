@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { login as authenticate } from "./api";
+import { login as authenticate } from "../api/api";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,

@@ -36,7 +36,9 @@ const Expenses = ({
       </form>
       <h2>Expenses</h2>
       {expenses.map(({ id, ...expense }) => {
-        return <Expense key={id} {...expense} onDelete={onDeleteExpense(id)} />;
+        return (
+          <Expense key={id} {...expense} onDelete={() => onDeleteExpense(id)} />
+        );
       })}
       <h2>Total Expenses: {totalExpenses} NIS</h2>
       <h2>Remaining: {totalDeposits - totalExpenses} NIS</h2>

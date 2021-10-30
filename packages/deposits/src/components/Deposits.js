@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Deposit from "./Deposit";
 import useForm from "./useForm";
 
 const Deposits = ({ deposits = [], onAddDeposit, onDeleteDeposit }) => {
   const { data, handleChange, handleSubmit } = useForm({
-    onSubmit: async () => onAddDeposit(data),
+    onSubmit: () => {
+      onAddDeposit(data);
+    },
   });
   return (
     <main>
@@ -19,9 +21,9 @@ const Deposits = ({ deposits = [], onAddDeposit, onDeleteDeposit }) => {
         <input value="Add" type="submit" />
       </form>
       <h2>Deposits</h2>
-      {deposits.map(({ id, ...deposit }) => {
-        return <Deposit key={id} {...deposit} onDelete={onDeleteDeposit(id)} />;
-      })}
+      {deposits.map(({ id, ...deposit }) => (
+        <Deposit key={id} {...deposit} onDelete={() => onDeleteDeposit(id)} />
+      ))}
     </main>
   );
 };

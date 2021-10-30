@@ -8,14 +8,14 @@ import {
   deleteExpense,
   getDeposits,
   getExpenses,
-} from "./api";
-import AuthContext from "./AuthContext";
-import Navbar from "./Navbar";
-import Expenses from "./Expenses";
-import PageNotFound from "./PageNotFound";
-import Signin from "./Signin";
-import Signup from "./Signup";
-import Deposits from "./Deposits";
+} from "./api/api";
+import AuthContext from "./hooks/AuthContext";
+import Navbar from "./components/Navbar";
+import Expenses from "./components/ExpensesApp";
+import PageNotFound from "./components/PageNotFound";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
+import Deposits from "./components/DepositsApp";
 
 function App() {
   const [expenses, setExpenses] = useState([]);
@@ -50,11 +50,13 @@ function App() {
   };
 
   const addDepositHandler = async (deposit) => {
+    console.log({ deposit });
     await addDeposit(userId, deposit.amount);
     updateDeposits();
   };
 
   const deleteDepositHandler = (id) => async (e) => {
+    console.log("depositId", id);
     await deleteDeposit(id);
     updateDeposits();
   };
