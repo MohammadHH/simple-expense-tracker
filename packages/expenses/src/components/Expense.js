@@ -6,7 +6,7 @@ const Expense = ({ date, item, amount, onDelete }) => {
       <h2>{item}</h2>
       <div>{amount} NIS</div>
       <div>{date.toLocaleDateString("en-CA")}</div>
-      <button onClick={onDelete}>Delete</button>
+      <button onClick={() => onDelete()}>Delete</button>
     </li>
   );
 };

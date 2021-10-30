@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import {
@@ -11,11 +11,11 @@ import {
 } from "./api/api";
 import AuthContext from "./hooks/AuthContext";
 import Navbar from "./components/Navbar";
-import Expenses from "./components/ExpensesApp";
 import PageNotFound from "./components/PageNotFound";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Deposits from "./components/DepositsApp";
+import Expenses from "./components/ExpensesApp";
 
 function App() {
   const [expenses, setExpenses] = useState([]);
@@ -30,7 +30,10 @@ function App() {
   );
 
   const updateDeposits = useCallback(
-    () => getDeposits(userId).then(setDeposits).catch(console.log),
+    () =>
+      getDeposits(userId)
+        .then((deposits) => setDeposits(deposits))
+        .catch(console.log),
     [userId]
   );
 
@@ -44,19 +47,17 @@ function App() {
     updateExpenses();
   };
 
-  const deleteExpenseHandler = (id) => async (e) => {
+  const deleteExpenseHandler = async (id) => {
     await deleteExpense(id);
     updateExpenses();
   };
 
   const addDepositHandler = async (deposit) => {
-    console.log({ deposit });
     await addDeposit(userId, deposit.amount);
     updateDeposits();
   };
 
-  const deleteDepositHandler = (id) => async (e) => {
-    console.log("depositId", id);
+  const deleteDepositHandler = async (id) => {
     await deleteDeposit(id);
     updateDeposits();
   };

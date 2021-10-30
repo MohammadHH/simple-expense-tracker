@@ -15,6 +15,10 @@ const Expenses = ({
     (curr, { amount }) => curr + +amount,
     0
   );
+  const x = (id) => {
+    console.log("triggered");
+    console.log(typeof onDeleteExpense(id));
+  };
   return (
     <main>
       <form onSubmit={handleSubmit}>
@@ -36,9 +40,7 @@ const Expenses = ({
       </form>
       <h2>Expenses</h2>
       {expenses.map(({ id, ...expense }) => {
-        return (
-          <Expense key={id} {...expense} onDelete={() => onDeleteExpense(id)} />
-        );
+        return <Expense key={id} {...expense} onDelete={() => x(id)} />;
       })}
       <h2>Total Expenses: {totalExpenses} NIS</h2>
       <h2>Remaining: {totalDeposits - totalExpenses} NIS</h2>

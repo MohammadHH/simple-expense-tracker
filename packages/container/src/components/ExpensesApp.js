@@ -6,7 +6,7 @@ export default (props) => {
 
   useEffect(() => {
     mount(ref.current, props);
-  }, []);
+  }, [props.expenses]);
 
   return <div ref={ref} />;
 };

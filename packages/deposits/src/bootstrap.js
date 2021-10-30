@@ -7,7 +7,6 @@ const isolatedAppRoot = document.getElementById("deposit-root");
 
 // Mount function to start up the app
 const mount = (el, { deposits, onAddDeposit, onDeleteDeposit }) => {
-  console.log("onDeleteDeposit", onDeleteDeposit);
   ReactDOM.render(
     <Deposits
       deposits={deposits}
